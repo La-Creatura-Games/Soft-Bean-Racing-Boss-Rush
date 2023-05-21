@@ -18,6 +18,17 @@ namespace Utils
         }
     }
 
+    struct Math
+    {
+        static public void RotationToDirection(Vector2 direction, out Quaternion rotation) {
+            rotation = Quaternion.LookRotation(Vector3.forward, Quaternion.identity * direction);
+        }
+        
+        static public void DirectionToRotation(Quaternion rotation, out Vector2 direction) {
+            direction = rotation * Vector3.forward;
+        }
+    }
+
     namespace Bezier
     {
         public struct BezierCurve
