@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Basic Gun
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 3500443392596122473, guid: 1ba80c42e29ff8e498a1cd35944ec1ff, type: 3}
-  bulletSpeedScale: 40
+  bulletSpeed: 30
+  fireRate: 3
