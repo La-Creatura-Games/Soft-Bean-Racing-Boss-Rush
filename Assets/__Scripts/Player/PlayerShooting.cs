@@ -11,11 +11,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform gunTransform;
 
     [SerializeField] private GunObject gun;
-    [SerializeField] private float chargeSpeed = 3;
-    
-    private bool isCharging;
-    private bool isMax;
-    private float chargeAmount = 0;
+
+    private float nextTimeToFire = 0;
 
     Camera cam;
 
@@ -34,7 +31,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
     // Input
-    private bool chargeInput;
+    private bool fireInput;
 
     #region Singleton
     
@@ -51,51 +48,27 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void Update() {
-        if (isCharging && !isMax)
-        {
-            chargeAmount += chargeSpeed * Time.deltaTime;
-            chargeAmount = Mathf.Clamp01(chargeAmount);
-            if (chargeAmount == 1)
-            {
-                MaxCharge();
-            }
-        }
-
         RotateGun();
+
+        if (fireInput && Time.time > nextTimeToFire)
+        {
+            Fire();
+        }
     }
 
     private void RotateGun() {
         gunAnchor.rotation = gunRotation;
     }
 
-    private void StartCharging() {
-        isCharging = true;
-    }
-
     private void Fire() {
         Rigidbody2D bulletBody = Instantiate(gun.bulletPrefab, gunTransform.position, gunRotation);
-        bulletBody.AddRelativeForce(Vector2.up * gun.bulletSpeedScale * chargeAmount, ForceMode2D.Impulse);
+        bulletBody.AddRelativeForce(Vector2.up * gun.bulletSpeed, ForceMode2D.Impulse);
 
-        isCharging = false;
-        isMax = false;
-        chargeAmount = 0;
-    }
-
-    private void MaxCharge() {
-        isMax = true;
-        print("Max");
+        nextTimeToFire = Time.time + 1 / gun.fireRate;
     }
 
     void OnFire(InputValue value) {
-        chargeInput = value.Get<float>() > 0;
-
-        if (chargeInput)
-        {
-            StartCharging();
-        } else
-        {
-            Fire();
-        }
+        fireInput = value.Get<float>() > 0;
     }
 
 }

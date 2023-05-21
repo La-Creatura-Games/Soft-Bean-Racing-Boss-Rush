@@ -5,6 +5,7 @@ public class GunObject : ScriptableObject
 {
 
     public Rigidbody2D bulletPrefab;
-    public float bulletSpeedScale = 30;
+    public float bulletSpeed = 30;
+    public float fireRate = 3;
 
 }
