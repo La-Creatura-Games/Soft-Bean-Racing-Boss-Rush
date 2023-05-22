@@ -412,6 +412,7 @@ GameObject:
   - component: {fileID: 655472542}
   - component: {fileID: 655472543}
   - component: {fileID: 655472544}
+  - component: {fileID: 655472545}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Deadly
@@ -496,7 +497,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -512,6 +513,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &655472545
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655472541}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1108142478
 GameObject:
   m_ObjectHideFlags: 0
@@ -19303,7 +19325,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1993634751}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a66443b9c9d8a45429219aaf3bf87201, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -19844,7 +19866,7 @@ MonoBehaviour:
   duckMaxSpeed: 5
   dustParticles: {fileID: 0}
   jumpHeight: 9
-  overGroundBox: {x: 0.8, y: 0.3}
+  overGroundBox: {x: 0.9, y: 1}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -20015,7 +20037,7 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 64
-  grappleRange: 15
+  grappleRange: 18
 --- !u!114 &6018428608062049920
 MonoBehaviour:
   m_ObjectHideFlags: 0

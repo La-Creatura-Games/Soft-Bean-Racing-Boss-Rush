@@ -13,8 +13,8 @@ public class PlayerHealth : MonoBehaviour
         transform.position = originalPosition;
     }
 
-    void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("Deadly"))
+    void OnTriggerEnter2D(Collider2D trigger) { 
+        if (trigger.CompareTag("Deadly"))
         {
             Die();
         }

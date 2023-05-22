@@ -73,8 +73,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        // Checks();
-
         if (canRun) Run();
 
         Gravity();
