@@ -13,9 +13,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Running")]
     [SerializeField] private float maxSpeed = 15;
+    public float acceleration = 500;
+    public float decceleration = 600;
     [SerializeField] private float duckMaxSpeed = 5;
-    [SerializeField] private float acceleration = 500;
-    [SerializeField] private float decceleration = 600;
     [SerializeField] private ParticleSystem dustParticles;
 
     [Header("Jumping")]
