@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils;
 
 public class PlayerGrapple : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class PlayerGrapple : MonoBehaviour
     [SerializeField] private SpringJoint2D springJoint;
     [SerializeField] private LineRenderer grappleRope;
     [SerializeField] private LayerMask grappleLayer;
-    [SerializeField] private float grappleRange = 10;
+    [SerializeField] private Optional<float> grappleRange = new Optional<float>(10);
 
     private bool grappleInput;
     private Vector2 grapplePosition;
@@ -44,7 +45,8 @@ public class PlayerGrapple : MonoBehaviour
     private void StartGrapple() {
         Vector3 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 direction = (mousePos - grapplePoint.position).normalized;
-        RaycastHit2D ray = Physics2D.Raycast(grapplePoint.position, direction, grappleRange, grappleLayer);
+        float range = grappleRange.enabled ? grappleRange.value : Mathf.Infinity;
+        RaycastHit2D ray = Physics2D.Raycast(grapplePoint.position, direction, range, grappleLayer);
 
         if (ray)
         {
@@ -74,7 +76,10 @@ public class PlayerGrapple : MonoBehaviour
     }
 
     void OnDrawGizmosSelected() {
-        Gizmos.DrawWireSphere(grapplePoint.position, grappleRange);
+        if (grappleRange.enabled)
+        {
+            Gizmos.DrawWireSphere(grapplePoint.position, grappleRange.value);
+        }
     }
 
 }

@@ -19641,7 +19641,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.2
+    widthMultiplier: 0.4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -20037,7 +20037,9 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 64
-  grappleRange: 18
+  grappleRange:
+    _enabled: 1
+    _value: 20
 --- !u!114 &6018428608062049920
 MonoBehaviour:
   m_ObjectHideFlags: 0
