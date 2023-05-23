@@ -10,6 +10,7 @@ public class PlayerGrapple : MonoBehaviour
     [SerializeField] private LineRenderer grappleRope;
     [SerializeField] private LayerMask grappleLayer;
     [SerializeField] private Optional<float> grappleRange = new Optional<float>(10);
+    [SerializeField] private LayerMask cameraBoundsLayer;
 
     private bool grappleInput;
     private Vector2 grapplePosition;
@@ -45,7 +46,15 @@ public class PlayerGrapple : MonoBehaviour
     private void StartGrapple() {
         Vector3 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 direction = (mousePos - grapplePoint.position).normalized;
-        float range = grappleRange.enabled ? grappleRange.value : Mathf.Infinity;
+        float range;
+        if (grappleRange.enabled)
+        {
+            range = grappleRange.value;
+        } else
+        {
+            RaycastHit2D cameraBoundsRay = Physics2D.Raycast(grapplePoint.position, direction, Mathf.Infinity, cameraBoundsLayer);
+            range = cameraBoundsRay.distance;
+        }
         RaycastHit2D ray = Physics2D.Raycast(grapplePoint.position, direction, range, grappleLayer);
 
         if (ray)

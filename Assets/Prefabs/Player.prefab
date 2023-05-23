@@ -312,6 +312,9 @@ MonoBehaviour:
   grappleRange:
     _enabled: 1
     _value: 25
+  cameraBoundsLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &4066496503759247795
 MonoBehaviour:
   m_ObjectHideFlags: 0
